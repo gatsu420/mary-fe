@@ -46,8 +46,8 @@ export function useGetFood({ id }: { id: number }) {
           feeder: json.feeder,
           location: json.location,
           remarks: json.remarks,
-          createdAt: json.createdAt,
-          updatedAt: json.updatedAt,
+          createdAt: new Date(json.createdAt).toLocaleString(),
+          updatedAt: new Date(json.updatedAt).toLocaleString(),
         });
       } catch (err) {
         if (err instanceof Error) {
