@@ -1,5 +1,6 @@
 "use server";
 
+import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 
 export async function SetTokenToCookies(formData: FormData) {
@@ -20,6 +21,8 @@ export async function SetTokenToCookies(formData: FormData) {
   const data = await resp.json();
   const cookieStore = await cookies();
   cookieStore.set("signedToken", data.signedToken);
+
+  redirect("/food-detail");
 }
 
 export async function GetTokenFromCookies() {
