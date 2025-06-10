@@ -46,8 +46,8 @@ export function useGetFood({ id }: { id: number }) {
           feeder: json.feeder,
           location: json.location,
           remarks: json.remarks,
-          createdAt: new Date(json.createdAt).toLocaleString(),
-          updatedAt: new Date(json.updatedAt).toLocaleString(),
+          createdAt: json.createdAt,
+          updatedAt: json.updatedAt,
         });
       } catch (err) {
         if (err instanceof Error) {
@@ -81,8 +81,12 @@ export function GetFood({
   if (!data) {
     return <p>Loading...</p>;
   }
+
   if (data.remarks == "") {
-    return (data.remarks = "No remarks");
+    data.remarks = "No remarks";
   }
+  data.createdAt = new Date(data.createdAt).toLocaleString();
+  data.updatedAt = new Date(data.updatedAt).toLocaleString();
+
   return <p>{data[field]}</p>;
 }
